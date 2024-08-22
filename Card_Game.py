@@ -52,3 +52,6 @@ class Deck:
         if len(self.cards) == 0:
             return
         return self.cards.pop()
+    
+class Game:
+    pass
