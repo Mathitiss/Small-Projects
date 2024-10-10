@@ -1,7 +1,7 @@
 from random import shuffle
 
 class Card:
-    suit = ["Пикей",
+    suits = ["Пикей",
             "Червей",
             "Бубнов",
             "Крестей"]
@@ -37,8 +37,7 @@ class Card:
         return False
     
     def __repr__(self):
-        v = self.values[self.value] + " of " + self.suits[self.suit]
-        return v
+        return self.values[self.value] + ' ' + self.suits[self.suit]
     
 class Deck:
     def __init__(self):
