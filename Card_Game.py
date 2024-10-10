@@ -1,10 +1,10 @@
 from random import shuffle
 
 class Card:
-    suit = ["Пикей",
+    suits = ["Пиков",
             "Червей",
-            "Бубей",
-            "Треф"]
+            "Бубнов",
+            "Крестей"]
     
     values = [None, None, "2", "3",
               "4", "5", "6", "7",
@@ -13,7 +13,7 @@ class Card:
               "Короля", "Туза"]
     
     def __init__(self, v, s):
-        self.values = v
+        self.value = v
         self.suit = s
 
     def __lt__(self, c2):
@@ -37,8 +37,7 @@ class Card:
         return False
     
     def __repr__(self):
-        v = self.values[self.value] + " of " + self.suits[self.suit]
-        return v
+        return self.values[self.value] + ' ' + self.suits[self.suit]
     
 class Deck:
     def __init__(self):
@@ -50,7 +49,7 @@ class Deck:
 
     def rm_card(self):
         if len(self.cards) == 0:
-            return
+            return None
         return self.cards.pop()
 
 class Player:
@@ -79,14 +78,12 @@ class Game:
 
     def play_game(self):
         cards = self.deck.cards
-        print("Поехали!")
+        print("Игроки добавлены")
+        print()
 
         while len(cards) >= 2:
-            m = "Нажмите 'X' для выхода. Нажмите любую клавишу для начала игры."
-            response = input(m)
+            print(input("Нажмите ENTER чтобы продолжить "))
 
-            if response == 'X':
-                break
             p1c = self.deck.rm_card()
             p2c = self.deck.rm_card()
             p1n = self.p1.name
@@ -102,7 +99,7 @@ class Game:
 
         win = self.winner(self.p1, self.p2)
 
-        print("Игра окончена. {} выиграл!".format(win))
+        print(f"Игра окончена. {win} выиграл!")
 
     def winner(self, p1, p2):
         if p1.wins > p2.wins:
@@ -110,3 +107,6 @@ class Game:
         if p1.wins < p2.wins:
             return p1.name
         return "Ничья!"
+    
+game = Game()
+game.play_game()
